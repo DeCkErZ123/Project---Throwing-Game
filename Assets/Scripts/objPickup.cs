@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class objPickup : MonoBehaviour
@@ -11,7 +10,7 @@ public class objPickup : MonoBehaviour
     public Rigidbody objRigidbody;
     public float throwAmount;
 
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("MainCamera"))
         {
@@ -20,7 +19,6 @@ public class objPickup : MonoBehaviour
             interactable = true;
         }
     }
-
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MainCamera"))
@@ -31,9 +29,17 @@ public class objPickup : MonoBehaviour
                 crosshair2.SetActive(false);
                 interactable = false;
             }
+            if (pickedup == true)
+            {
+                objTransform.parent = null;
+                objRigidbody.useGravity = true;
+                crosshair1.SetActive(true);
+                crosshair2.SetActive(false);
+                interactable = false;
+                pickedup = false;
+            }
         }
     }
-
     void Update()
     {
         if (interactable == true)
@@ -48,8 +54,17 @@ public class objPickup : MonoBehaviour
             {
                 objTransform.parent = null;
                 objRigidbody.useGravity = true;
-                objRigidbody.velocity = cameraTrans.forward * throwAmount * Time.deltaTime;
                 pickedup = false;
+            }
+            if (pickedup == true)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    objTransform.parent = null;
+                    objRigidbody.useGravity = true;
+                    objRigidbody.velocity = cameraTrans.forward * throwAmount * Time.deltaTime;
+                    pickedup = false;
+                }
             }
         }
     }
