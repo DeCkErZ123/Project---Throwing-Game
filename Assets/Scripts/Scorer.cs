@@ -7,12 +7,11 @@ public class Scorer : MonoBehaviour
 {
     public int score = 0;
     public GameObject scoreManager;
+    public bool colliderE = true;
 
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("It did do it! YAya!");
-
         if (collision.gameObject.layer == 6)
         {
             scoreManager.GetComponent<UIUpdate>().UpdateScore();
