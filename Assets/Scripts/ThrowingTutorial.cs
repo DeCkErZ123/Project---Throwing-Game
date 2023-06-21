@@ -66,4 +66,12 @@ public class ThrowingTutorial : MonoBehaviour
     {
         readyToThrow = true;
     }
+
+    //GetKeyDown - When you press down, THAT frame only
+    //GetKey - When something IS pressed down, as long as it is
+    //GetKeyUp - When a button/key is released.
+    //So IF holding down, build charge up... Probably to a point.
+    //Think about Time.delta time - Or think of a time WINDOW, and this way you are scaling something based on how much of that input window the player holds for.
+
+
 }
