@@ -4091,4 +4091,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreManager: {fileID: 0}
-  colliderE: 1
